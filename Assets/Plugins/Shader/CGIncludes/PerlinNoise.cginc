@@ -19,20 +19,19 @@ float perlin_noise(float2 p)
 {
 	float2 pf = floor(p);
 	float2 po = p - pf;
-	float2 w = po * po*(3.0 - 2.0*po);
 
 	float res = mix(
 		mix(
 			dot(hash22(pf), (po)),
 			dot(hash22(pf + float2(1, 0)), (po - float2(1, 0))),
-			w.x
+			po.x
 		),
 		mix(
 			dot(hash22(pf + float2(0, 1)), (po - float2(0, 1))),
 			dot(hash22(pf + float2(1, 1)), (po - float2(1, 1))),
-			w.x
+			po.x
 		),
-		w.y
+		po.y
 	);
 	return res;
 }
